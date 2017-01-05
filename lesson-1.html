@@ -13,7 +13,9 @@
         <h3>Create a Blank Cordova Project</h3>
         <p>First open a terminal an navigate to your Flash drive <em>Hint:</em> use the "cd" command to change directories</p>
         <code>
+        <pre>
         cordova create gwc_app_project org.sanmarinohs.gwc.app "GWC App Project" 
+        </pre>
         </code>
         <p>Here we create a new app with the following properties.
         <ul>
@@ -25,7 +27,9 @@
         </p>
         <p>In addition, we want to tell Cordova that we intend to run our app in the browser. Let us run one more command that adds browser to the list of App end-points.</p>
         <code>
+        <pre>
         cordova platform add browser --save
+        </pre>
         </code>
         <p>Success! Now use your editor of choice (possibly XCode or Atom) to explore around this newly created directory and see some of the files created.</p>
         <h3>Copy Some Files</h3>
@@ -41,7 +45,9 @@
         </p>
         <p>Now let us test our app! Run it with the following command, and it should appear in a browser.</p> 
         <code>
+        <pre>
         cordova run browser
+        </pre>
         </code>
         <h2>Let's Write Some Code</h2>
         <p>A standard web-page (and our app) is split into three different components:
@@ -57,17 +63,21 @@
         <h3>Add Some Content</h3>
         <p>Lets start by adding a heading, a paragraph, and a button to our app.  To do this, open up the file "www/index.html" under your project and find the &lt;div&gt;&lt;/div&gt; pair with id="app".  Add the following lines inside that pair of tags.
         <code>
+        <pre>
             <h1>GWC Über Alles</h1>
             <p id="paragraph-1">GWC is the greatest club!</p>
             <button id="change-button">Change Text</button>
+        <pre>
         </code>
         The result should look like the following:
         <code>
+        <pre>
             <div class="app">
                 <h1>GWC Über Alles</h1>
                 <p id="paragraph-1">GWC is the greatest club!</p>
                 <button id="change-button">Change Text</button>
             </div>
+        </pre>
         </code>
         Run your app, as we saw above, and notice that the content of your app has changed.
         </p>
@@ -78,13 +88,15 @@
         <p>Currently, we have boring content that doesn't change in any way. However, this is a computer course, so naturally we must make it change! Lets add some code to make things change. This is done in JavaScript and to do so we need to edit the file "www/js/gwc-main.js".</p>
         First lets add the following function to the file.  It uses code to change the HTML under a selected element. In this case we select the paragraph tag with id="paragraph-1" and change the text inside.
         <code>
+        <pre>
         /**
          * Changes the text of the paragraph with id "paragraph-1"
          */
         function change()
         {
             document.getElementById("paragraph-1").innerHTML = "This is new text";
-        }        
+        }
+        </pre>    
         </code>
         <p>The above code defines a function. Inside that function, we reference the document (JavaScript's view of the HTML) and ask the document for the element who has the id "paragraph-1" then we set the HTML inside that element to be something new. In this case we are using plain text, but we could put in any valid HTML.
         </p>
@@ -92,10 +104,12 @@
         You can add the following lines to the main function to attach our function as a responder to the "click" of our button.
         </p>
         <code>
+        <pre>
             //Start your GWC code here
             var button = document.getElementById("change-button");
             //Set a function to call on a click of the button
             button.onclick = change;
+        </pre>
         </code>
         <p>Here we use the button's id to get a reference to the button and place it into our variable named "button".  Now we can use this variable to manipulate the button using JavaScript.  Specifically, we set the onclick handler to our change function.  This means when the button is clicked, our function is called.
         </p>
