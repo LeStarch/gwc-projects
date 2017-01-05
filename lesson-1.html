@@ -11,6 +11,7 @@
         <p>We are using a technology called "Apache Cordova". This technology allows us to create one software project that runs on your phone, my phone, a web browser, and many different devices. In addition, the code is all done with standard web technologies which run the internet and much more. Thus is is well worth-while to learn</p>
         <p>We will find that the technology is pretty non-intrusive but it does take a spot of setup. That is what we are doing here<p>
         <h3>Create a Blank Cordova Project</h3>
+        <p>First open a terminal an navigate to your Flash drive <em>Hint:</em> use the "cd" command to change directories</p>
         <code>
         cordova create gwc_app_project org.sanmarinohs.gwc.app "GWC App Project" 
         </code>
@@ -22,6 +23,108 @@
         </ul>
         <em>Note:</em>Feel free to personalize these items.
         </p>
+        <p>In addition, we want to tell Cordova that we intend to run our app in the browser. Let us run one more command that adds browser to the list of App end-points.</p>
+        <code>
+        cordova platform add browser --save
+        </code>
+        <p>Success! Now use your editor of choice (possibly XCode or Atom) to explore around this newly created directory and see some of the files created.</p>
+        <h3>Copy Some Files</h3>
+        <p>In order to get a nice clean start building our new app, this lesson provides some base-files that will take care of the boiler-plate code that needs to link our empty files to the initialization of the app. In most languages, this is handled for us....but the Cordova technology requires a pinch more initialization, which this boiler-plate takes care of.  If you are interested for more details, ask your instrucor. Regardless, copy these files overtop of the ones created by the above "create" command.
+        Files:
+        <ul>
+            <li>base-files/www/index.html</li>
+            <li>base-files/www/js/index.js</li>
+            <li>base-files/www/js/gwc-main.js</li>
+            <li>base-files/www/css/index.css</li>
+        </ul>
+        <em>Note:</em>This kind of "accept-the-magic" will be minimized in these lessons, and you are always encouraged to ask for it to be demistified.
+        </p>
+        <p>Now let us test our app! Run it with the following command, and it should appear in a browser.</p> 
+        <code>
+        cordova run browser
+        </code>
+        <h2>Let's Write Some Code</h2>
+        <p>A standard web-page (and our app) is split into three different components:
+            <ol>
+                <li>Content (HTML)</li>
+                <li>Functionality (JavaScript)</li>
+                <li>Style (CSS)</li>
+            </ol>
+        Content, expressed using HTML, is the words, images, and buttons displayed to the user. A good example the text in your e-mail. Don't confuese this with the Style, which is how that content is displayed. Functionality is the code that makes the content dynamic. A good example is the send/recieve actions for your e-mail as they take your text and sling it across the web to your friends on the other side. Style, as stated before, is how the content is displayed. A good example is the font your e-mail is written in.  The content is the same if you friend views the e-mail in "Comic Sans" even in you wrote it in "Times New Roman" (it looks different, but the words are the same).
+        </p>
+        <p>Our app will follow these same pattern.  Our words will be expressed in HTML, we will add dynamic functionality using JavaScript, and we will theme it with different styles using CSS (in a future lesson).
+        </p>
+        <h3>Add Some Content</h3>
+        <p>Lets start by adding a heading, a paragraph, and a button to our app.  To do this, open up the file "www/index.html" under your project and find the &lt;div&gt;&lt;/div&gt; pair with id="app".  Add the following lines inside that pair of tags.
+        <code>
+            <h1>GWC Über Alles</h1>
+            <p id="paragraph-1">GWC is the greatest club!</p>
+            <button id="change-button">Change Text</button>
+        </code>
+        The result should look like the following:
+        <code>
+            <div class="app">
+                <h1>GWC Über Alles</h1>
+                <p id="paragraph-1">GWC is the greatest club!</p>
+                <button id="change-button">Change Text</button>
+            </div>
+        </code>
+        Run your app, as we saw above, and notice that the content of your app has changed.
+        </p>
+        <p>HTML is formatted, or annotated text. The tags you see e.g. &lt;div&gt; come in pairs which denote sections of your document. They do not appear in the display, but they do add things too it.  Above, we see a paragraph (p) a heading (h1) and a button (button) put into our document using tags. The tags don't directly appear, but they do cause a heading, paragraph, and button to appear. Feel free to read more on HTML. A great resource is: <a href="http://www.w3schools.com/html/default.asp">http://www.w3schools.com/html/default.asp</a>
+        <em>Note:</em>You may have noticed id="blah blah blah" above. The id is an attribute attached to the tage that allows us to find and manipulate this tag from within code (JavaScript).
+        </p>
+        <h3>Add Some Functionality</h3>
+        <p>Currently, we have boring content that doesn't change in any way. However, this is a computer course, so naturally we must make it change! Lets add some code to make things change. This is done in JavaScript and to do so we need to edit the file "www/js/gwc-main.js".</p>
+        First lets add the following function to the file.  It uses code to change the HTML under a selected element. In this case we select the paragraph tag with id="paragraph-1" and change the text inside.
+        <code>
+        /**
+         * Changes the text of the paragraph with id "paragraph-1"
+         */
+        function change()
+        {
+            document.getElementById("paragraph-1").innerHTML = "This is new text";
+        }        
+        </code>
+        <p>The above code defines a function. Inside that function, we reference the document (JavaScript's view of the HTML) and ask the document for the element who has the id "paragraph-1" then we set the HTML inside that element to be something new. In this case we are using plain text, but we could put in any valid HTML.
+        </p>
+        <p>Inside this file we already have a main function.  This main function was setup by the boiler-plate code we copied so that it is the entry point to our app. It runs after all the HTML and JavaScript files are loaded. Nothing calls the above change function. We should attach it to a button click so we can click our button to change the text.
+        You can add the following lines to the main function to attach our function as a responder to the "click" of our button.
+        </p>
+        <code>
+            //Start your GWC code here
+            var button = document.getElementById("change-button");
+            //Set a function to call on a click of the button
+            button.onclick = change;
+        </code>
+        <p>Here we use the button's id to get a reference to the button and place it into our variable named "button".  Now we can use this variable to manipulate the button using JavaScript.  Specifically, we set the onclick handler to our change function.  This means when the button is clicked, our function is called.
+        </p>
+        <p>Now run your app and click the button. Success! (We hope).  More on JavaScript can be found at: <a href="http://www.w3schools.com/js/default.asp">http://www.w3schools.com/js/default.asp</a> Feel free to ask questions, explore and do amazing things!</p>
+        <h2>Self-Driven Extensions</h2>
+        Try to figure out the following items without a specific tutorial.
+        <em>Remember:</em>Ask questions! Your instructors are there to enable your creativety, not lead you by the hand.
+        <em>Remember:</em>Share cool ideas with your classmates!
+        <h3>Basic</h3>
+        <ol>
+            <li>What happens if you call the "change" function directly from main, and not triggered by the button</li>
+            <li>Add some other tag types to your content. Try searching for "a", "div", and "img" tags and see what they do</li>
+            <li>Can you write JavaScript to change the button's text?</li>
+        </ol>
+        <h3>Intermediate</h3>
+        <ol>
+            <li>Can you add a new button when the first button is clicked?</li>
+            <li>Try adding several paragraphs using a loop</li>
+            <li>Can you change the heading text on the button click</li>
+        </ol>
+        <h3>Advanced</h3>
+        <ol>
+            <li>Can you add a button that restores the original text. Tey to do this without hard-coding the original text in JavaScript</li>
+            <li>Can you get your app to run on a smartphone?</li>
+            <li>Can you add 10 buttons that make 10 different changes?</li>
+            <li>Can you find another tag that can control your app?</li>
+        </ol>
+        <h3>Super-Star</h3>
+        <em>Do something amazing</em>
         <a href="index.html">Directory</a>
     </body>
 </html>
