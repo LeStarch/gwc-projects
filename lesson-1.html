@@ -15,7 +15,7 @@
         <code>
         <xmp>
         cordova create gwc_app_project org.sanmarinohs.gwc.app "GWC App Project" 
-        <xmp>
+        </xmp>
         </code>
         <p>Here we create a new app with the following properties.
         <ul>
@@ -29,7 +29,7 @@
         <code>
         <xmp>
         cordova platform add browser --save
-        <xmp>
+        </xmp>
         </code>
         <p>Success! Now use your editor of choice (possibly XCode or Atom) to explore around this newly created directory and see some of the files created.</p>
         <h3>Copy Some Files</h3>
@@ -47,7 +47,7 @@
         <code>
         <xmp>
         cordova run browser
-        <xmp>
+        </xmp>
         </code>
         <h2>Let's Write Some Code</h2>
         <p>A standard web-page (and our app) is split into three different components:
@@ -67,7 +67,7 @@
             <h1>GWC Über Alles</h1>
             <p id="paragraph-1">GWC is the greatest club!</p>
             <button id="change-button">Change Text</button>
-        <xmp>
+        </xmp>
         </code>
         The result should look like the following:
         <code>
@@ -77,7 +77,7 @@
                 <p id="paragraph-1">GWC is the greatest club!</p>
                 <button id="change-button">Change Text</button>
             </div>
-        <xmp>
+        </xmp>
         </code>
         Run your app, as we saw above, and notice that the content of your app has changed.
         </p>
@@ -96,7 +96,7 @@
         {
             document.getElementById("paragraph-1").innerHTML = "This is new text";
         }
-        <xmp>    
+        </xmp>    
         </code>
         <p>The above code defines a function. Inside that function, we reference the document (JavaScript's view of the HTML) and ask the document for the element who has the id "paragraph-1" then we set the HTML inside that element to be something new. In this case we are using plain text, but we could put in any valid HTML.
         </p>
@@ -109,7 +109,7 @@
             var button = document.getElementById("change-button");
             //Set a function to call on a click of the button
             button.onclick = change;
-        <xmp>
+        </xmp>
         </code>
         <p>Here we use the button's id to get a reference to the button and place it into our variable named "button".  Now we can use this variable to manipulate the button using JavaScript.  Specifically, we set the onclick handler to our change function.  This means when the button is clicked, our function is called.
         </p>
