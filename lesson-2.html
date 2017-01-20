@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+    <head>
+        <title>GWC App Project - Lesson 2</title>
+    </head>
+    <body>
+        <h1>GWC App Project - Lesson 2 - User Input</h1>
+        <a href="index.html">Directory</a>
+        <p>Welcome to the GWC App Project. This is lesson two. This lesson will teach you how to interact with the user in order to gain their input. In lesson one, we learned that a button can be used to trigger an action.  In this lesson, we will learn about several other types of user input: Textboxes, and CheckBoxes.</p>
+        <h2>TextBoxes</h2>
+        <p>TextBoxes are used to gather text input from the user. In general, textboxes are used to gather small inputs like words or phrases, where as another input that behaves similarly called a textarea gathers paragraphs.</p>
+        <h3>Adding a TextBox to your HTML</h3>
+        <p>Adding a textbox requires using the input tag. The input tag has 2 attributes that you should get in the habbit of setting. "type" and "name". "type" specifies what type of input it is, i.e. a textbox, or a checkbox. "name" allows HTML to attach things to it like label. For a textbox use the "text" as the type attribute, and pick any name. Make sure to specify an id as well, so that you may select it in javascript. If you'd like more information about other attributes on "input" tags see <a href="http://www.w3schools.com/tags/tag_input.asp">http://www.w3schools.com/tags/tag_input.asp</a></p>
+        <code>
+        <xmp>
+        <input type="text" name="my-textbox" id="textbox-1"></input>
+        </xmp>
+        </code>
+        <em>Note:</em> The id and name do not need to match.
+        <h3>Reading a Textbox's Value In JavaScript</h3>
+        <p>Now that we have our text box, lets go ahead and grab the value and pull it into JavaScript. This can be achieved by getting the text box and reading its "value" attribute. The code for this can be seen below</p>
+        <em>Note:</em>The "alert" call below displays a string in a pop-up box
+        <em>Note 2:</em>You should put this code, in a button-triggered box.  Otherwise the user won't have time to fill it before the alert.  (Try it in "main" if you don't believe me).
+        <code>
+        <xmp>
+            //Read the value
+            var input = document.getElementById("textbox-1").value;
+            //Put it into an alert pop-up
+            alert("Input was: "+input");
+        </xmp>
+        </code>
+        <h2>Checkboxes</h2>
+        <p>Checkboxes allow the user to select a subset of a set of options. They have two states "checked" and "unchecked". To create a checkbox, use the "input" tag with the "checkbox" type. Make sure to put the text for the checkbox inside the tags. Also, checkboxes can have their own "onclick" events like the button.</p>
+        <code>
+        <xmp>
+            <input type="checkbox" id="checkbox-1">My Fancy TextBox</input>
+        </xmp>
+        </code>
+        <h3>Grabbing the Checkbox State</h3>
+        <p>Grab the state of the checkbox using the "checked" attribute. It is a boolean (true or false), so we should be able to use it in an if statement.</p>
+        <code>
+        <xmp>
+            var is_checked = document.getElementById("checkbox-1").checked;
+            if (is_checked)
+            {
+                alert("You checked the box");
+            }
+            else
+            {
+                alert("You unchecked the box");
+            }
+        </xmp>
+        </code>
+        More information on inputs can be found at:<a href="http://www.w3schools.com/tags/tag_input.asp">http://www.w3schools.com/tags/tag_input.asp</a>
+        <h2>Self-Driven Extensions</h2>
+        Take some time to figure out what type of app you'd like to build. What should it look like? What will it do? What controls will you need? Then try to figure out the following items without a specific tutorial.
+        <em>Remember:</em>Ask questions! Your instructors are there to enable your creativety, not lead you by the hand.
+        <em>Remember:</em>Share cool ideas with your classmates!
+        <h3>Basic</h3>
+        <ol>
+            <li>Can you figure out how to add labels using the "label" tag</li>
+            <li>What do the following tags do: "li" "select" and "div"</li>
+            <li>Can you write a program that alerts the user every time the check-box is checked or unchecked</li>
+        </ol>
+        <h3>Intermediate</h3>
+        <ol>
+            <li>Can you add 3 other types of inputs?</li>
+            <li>Can you make a program that adds 2 numbers for the user?</li>
+            <li>Update the above add program to place the result not in an alert, but on the screen.</li>
+        </ol>
+        <h3>Advanced</h3>
+        <ol>
+            <li>Can you create radio-buttons?</li>
+            <li>Explore some mouse-events</li>
+            <li>Can you get your app to run on a smartphone?</li>
+        </ol>
+        <h3>Super-Star</h3>
+        <em>Do something amazing</em>
+        <a href="index.html">Directory</a>
+    </body>
+</html>
