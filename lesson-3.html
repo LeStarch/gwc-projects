@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+    <head>
+        <title>GWC App Project - Lesson 3</title>
+    </head>
+    <body>
+        <h1>GWC App Project - Lesson 3 - Style</h1>
+        <a href="index.html">Directory</a>
+        <p>Welcome to the GWC App Project. This is lesson three. This lesson will teach you how to style your apps in order to make them professional and beautiful.</p>
+        <h2>Classes</h2>
+        <p>So far we have learned about the "id" attribute of HTML tags. It sets an id for JavaScript to use to access elements. However, what if you want to deal with groups of tags? For example what if you want to set the "onclick" of all of your buttons and text boxes? Enter the class attribute of an HTML tag. It is set in the same way "id" is set, but uses the "class" attribute and denotes that element as part of a group.  Multiple tags of different types can be given the same class attribute and thus be placed into the same effective group. See below:</p>
+        <h3>Adding a TextBox and Button To A Class</h3>
+        <p>Add the following code to your HTML document, index.html, it adds a new textbox and a new button to the form. Observe that the class attribute has been added and we have not included an "id" attribute (ahtough we could have).</p>
+        <code>
+        <xmp>
+        <input type="text" name="my-textbox" class="agroup"></input>
+        <button class="agroup">Lesson 3 Button</button>
+        </xmp>
+        </code>
+        <p>We can now use JavaScript to access each of these elements and set the onclick events for the two items in the class. (yes textboxes can have onclick events). Place the following code in your gwc-main.js file</p>
+            <em>Note:</em> "getElementsByClassName" returns a list, so we will need a loop.
+            <em>Note:</em> If you want to trigger this code on a button-click, place this code in an event-triggered function. If you'd rather run this code on setup, put it in the main function.
+        <code>
+        <xmp>
+            var elements = document.getElementsByClassName("agroup");
+            for (var i = 0; i < elements.length; i++)
+            {
+                //Set background color, and onclick for each elements
+                elements[i].onclick = alert.bind(undefined,"Element #"+i+" clicked.");
+            }
+        </xmp>
+        </code>
+        Now click on the text box or button that we just added. You should see a popup! If you added the above code to a button-triggered function, you'll need to click on that button first.
+        <h4>On "bind" - Optional</h4>
+        <p>As we learned last week, alert is a function that takes one argument, a string to print in the alert box. The "bind" function (as seen above) is used to create a new function with the arguments pre-filled. Last week we had to call a fucntion like the below in order to pass alert its argument.</p>
+        <xmp>
+            function fn1()
+            {
+                alert("Some string");
+            }
+        </xmp>
+        </code>
+        <p>However, that is a lot of extra code to be able to use alert with no-arguments. We created a function to pre-fill the string. "bind" does the same thing, creating an anonymous function and asigning the arguments. "bind" takes N+1 arguments. The first argument we need to set to "undefined". The last N arguments fill the N arguments of the function you are binding. Here "alert" has 1 argument, so bind take 1+1 arguments. The first is "undefined" and the second is the string we wish to pass to alert.</p>
+        <h3>How to Make Things Pretty, or Add Style</h3>
+        <p>CSS is the last of the three technologies that power the web. We have learned about HTML and JS (content and functionality). Now we will learn about CSS which is the display or style of your content. CSS has many properties and thus you will need to explore a bit on your own; however, we will cover a few basic CSS commands here. <a href="http://www.w3schools.com/cssref/">http://www.w3schools.com/cssref/</a></p>
+        <p>To start off with let us copy some files from from the reference section of the flash drive in order to get a nice clean start on CSS. We'll also copy the files needed for the bootstrap section of this tutorial, but we will not link them to our application yet. Lets do the following to clean out our existing CSS:
+            <ol>
+                <li>Click on the flash drive</li>
+                <li>Navigate to the "gwc-app-project" (not your directory but the one continaing this lesson)</li>
+                <li>Navigate to "reference"</li>
+                <li>Navigate to "pretty-colors"</li>
+                <li>Navigate to "www"</li>
+                <li>Navigate to "css"</li>
+                <li>Copy the "index.css" file</li>
+                <li>Navigate to your project's "www" directory</li>
+                <li>Navigate to the "css" directory</li>
+                <li>Paste the file here, overwriting the existing file</li>
+            </ol>
+            Now lets grab the bootstrap folder for later:
+            to clean out our existing CSS:
+            <ol>
+                <li>Click on the flash drive</li>
+                <li>Navigate to the "gwc-app-project" (not your directory but the one continaing this lesson)</li>
+                <li>Navigate to "reference"</li>
+                <li>Navigate to "pretty-colors"</li>
+                <li>Navigate to "www"</li>
+                <li>Copy the "bootstrap-dist" folder</li>
+                <li>Navigate to your project's "www" directory</li>
+                <li>Paste the folder here</li>
+                <li>Navigate back to the "gwc-app-project" (not your directory but the one continaing this lesson) at the top of the flash drive</li>
+                <li>Navigate to "reference"</li>
+                <li>Navigate to "pretty-colors"</li>
+                <li>Navigate to "www"</li>
+                <li>Navigate to "js"</li>
+                <li>Copy the "jquery-3.1.1.js" file</li>
+                <li>Navigate to your project's "www" directory</li>
+                <li>Navigate to the "js" directory</li>
+                <li>Paste the file here</li>
+            </ol>
+        What did we just do? Cordova ships with a lot of extra style designs in it (yes that includes the cute robo-box). This looks pretty ugly, and often makes our content display improperly. Thus, we are copying in a new style file that is much more simple. It creates a small unfilled zone around the border of our app (10% of the screen size) and centers the content horizontally. It also sets the font to Helvetica. That is pretty much it.
+        </p>
+        <p>Now lets add some CSS. We can change the background-color of our buton and input from above. Lets make it pink, because pink is objectively the best color. CSS starts with an element specifier (like a tag name, id, or class name) and then follows with a set of properties to apply to the element(s) that match the specifier. If multiple sets of properties match, CSS uses the most specific matcher. Copy the below code into your index.css file and rerun your app.</p>
+        <code>
+        <xmp>
+            /* Specify all h1 headers using a "h1" tag specifier*/
+            h1
+            {
+                background-color: red;
+            }
+            /* We can set properties for all elements in a class using the class name prefixed by a "."*/
+            .agroup
+            {
+                background-color: pink;
+            }
+        </xmp>
+        </code>
+        Try some other properties, like "border", "margin", and "padding". Try to make your app look nice, and have an awsome style.
+        <h2>Bootstrap</h2>
+        <p>In industry, we use libraries and other third-party code in order to hasten the development of out apps. It is important to know the basic elements so we can customize key features, but it is sometimes nice to take advatage of the work of other developers in the field. Bootstrap is a design library that gives a modern look to elements in your app, if you apply it. It is opensource, meaning you can see how it is made.</p>
+        <p>In order to use Bootstrap, you'll need to add some lines that link in that code. These lines are added to your "index.html" file.  Add the fist line somewhere in the head section between the pair of "head" tags.</p>
+        <code>
+        <xmp>
+            <head>
+                ...
+                ...
+                <link rel="stylesheet" type="text/css" href="bootstrap-dist/css/bootstrap.css">
+                ...
+                ...
+            </head>
+        </xmp>
+        </code>
+        <p>Add the next two lines just before the other script tags in the body of your index.html document.</p>
+        <code>
+            <xmp>
+                <body>
+                    ...
+                    ...
+                    <script src="js/jquery-3.1.1.min.js"></script>
+                    <script src="bootstrap-dist/js/bootstrap.min.js"></script>
+                    <script ...
+                    ...
+                </body>
+            </xmp>
+        </code>
+        <p>Congradulations! Now you can use Bootstrap. Bootstrap automatically styls things when they are part of predefined classes. All you have to do is add classes to your elements that bootstrap knows about. One class that bootstrap styles is "btn-danger" which creates a bright red button. Lets try it:</p>
+        <code>
+        <xmp>
+        <button class="btn-danger">Danger!</button>
+        </xmp>
+        </code>
+        Spend some time and see what else Bootstrap can do.
+        More information on Bootstrap:<a href="getbootstrap.com/css/">getbootstrap.com/css/</a>
+        <h2>Self-Driven Extensions</h2>
+        Come up with an idea for your final project and discuss it with an instructor.
+        <a href="index.html">Directory</a>
+    </body>
+</html>
