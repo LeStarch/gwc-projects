@@ -19,7 +19,6 @@ class ArduinoAudio {
          * \param int pin: pin to use as output. Plug th + line of the speaker here.
          */
         ArduinoAudio(int pin) {
-            this->m_on_off = LOW; //Start off
             this->m_period_micros = 0;
             this->m_pin = pin;
             pinMode(this->m_pin, OUTPUT);
@@ -30,7 +29,7 @@ class ArduinoAudio {
          * \param int duration: duration to play note. This is in milliseoncds.
          */
         void play_note(float freq, int duration) {
-            unsigned int end_time = millis() + duration;
+            unsigned long end_time = millis() + duration;
             m_period_micros = get_period_micros(freq);
             while (end_time >= millis()) {
                 play();
@@ -63,24 +62,22 @@ class ArduinoAudio {
             if (m_period_micros < 2) {
                 return;
             }
-            //Get the current time in micro seconds
-            unsigned long micro = micros() % m_period_micros;
+            //Get the current time in micro seconds from the start of this period
+            unsigned int micro = micros() % m_period_micros;
             //Get a half-period fast by using shift to divide by 2
             unsigned int half_period = m_period_micros >> 1;
+            //Calculate the triangle wave
+            unsigned int analog = ((micro % half_period)* 256)/half_period;
             //The scond half of the period is off
-            if ((micro % m_period_micros) >= half_period && m_on_off != LOW) {
-                digitalWrite(this->m_pin, LOW);
-                m_on_off = LOW;
-            } else if (m_on_off != HIGH) {
-                digitalWrite(this->m_pin, HIGH);
-                m_on_off = HIGH;
+            if (micro >= half_period) {
+                analogWrite(this->m_pin, 258-analog);
+            } else {
+                analogWrite(this->m_pin, analog);
             }
         }
     private:
         //Local storage for the pin we use
         int m_pin;
-        //Storage of the pin state (on/off)
-        int m_on_off;
         //The system plays notes based on their period in microseconds. Thus, we store
         //the period, not the frequency to avoid repeating maths.
         unsigned int m_period_micros;
@@ -88,7 +85,7 @@ class ArduinoAudio {
 //Define a global variable here that will be our audio player
 //it is accesible from everywhere.
 //Note: we pass it pin "13" as the output pin for our audio.
-ArduinoAudio player(13);
+ArduinoAudio player(A1);
 
 /********** GWC class, edit below this line ********/
 // The above code is designed to support this project, but it shouldn't need to be touched.
@@ -107,4 +104,11 @@ void setup() {
 void loop() {
     player.play_note(200, 200);
     player.play_note(0, 200);
+
+    //Shutoff after several iterations
+    static int counter = 0;
+    if (counter >= 2) {
+        while (1) {}
+    }
+    //counter += 1;
 }
