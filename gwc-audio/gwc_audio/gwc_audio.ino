@@ -94,21 +94,24 @@ ArduinoAudio player(A1);
 //If you want yor music to play once, put it here.  Otherwise, put it
 //in the loop function.
 void setup() {
-    player.play_note(100, 200);
+    //Play three notes at 100Hz
+    player.play_note(100.0f, 200);
     player.play_note(0, 200);
-    player.play_note(100, 200);
+    player.play_note(100.0f, 200);
     player.play_note(0, 200);
 }
 //If you want yor music to play in a loop, put it here.  Otherwise, put it
 //in the setup function.
 void loop() {
-    player.play_note(200, 200);
+    //Beep at 2000.0Hz
+    player.play_note(2000.0f, 200);
     player.play_note(0, 200);
 
-    //Shutoff after several iterations
+    //Shutoff after several iterations. This is for your mentor's sanity.  Disable with
+    //caution.
     static int counter = 0;
     if (counter >= 2) {
         while (1) {}
     }
-    //counter += 1;
+    counter += 1;
 }
