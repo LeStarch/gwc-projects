@@ -20,6 +20,9 @@
  * ```
  * Created by starchmd on 10/11/19.
  */
+#include "SoftwareSerial.h"
+#include "DFRobotDFPlayerMini.h"
+
 #include "clock.hpp"
 #include "sample.hpp"
 
@@ -37,7 +40,7 @@ class ArduinoSound : public Clockable {
          * @param output_pin: output pin for producing sound output
          * @param freq: sample frequency for the output
          */
-        void init(int output_pin, int freq = 5000);
+        virtual void init(int output_pin, int freq = 5000);
 
         /**
          * Used to calculate the next sample and queue it for playing. This is done as an update, because it could take
@@ -80,11 +83,17 @@ class RecordedSound : public ArduinoSound {
         virtual unsigned char prep_sample();
 
         /**
+         * Initializes the hardware required to run the sound-chip.
+         */
+        void init();
+
+        /**
          * Resets and starts the playback. 
          */
         void start();
     private:
-        unsigned long m_count;
+        SoftwareSerial m_serial;
+        DFRobotDFPlayerMini m_player;
 };
 
 

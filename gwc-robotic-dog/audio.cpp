@@ -38,27 +38,29 @@ void ArduinoSound :: update() {
 // Setup the recorded sample player
 RecordedSound::RecordedSound() :
     ArduinoSound(),
-    m_count(SAMPLE_COUNT) {}
+    m_serial(10, 11)
+{
+     
+}
+
+//
+void RecordedSound::init() {
+    m_serial.begin(9600);
+    if (!m_player.begin(m_serial)) {
+        digitalWrite(13, LOW);  // Turn off LED to indicate error
+    }
+    m_player.volume(20);  //Set volume value
+}
 
 // Update the samples played count
-void RecordedSound::update() {
-    // PLay only to the end
-    if (m_count < SAMPLE_COUNT) {
-      m_count++;
-    }
-    ArduinoSound::update();
-}
+void RecordedSound::update() {}
+
 // Play samples
-unsigned char RecordedSound :: prep_sample() {
-    unsigned char sample = pgm_read_byte_near(SAMPLES + m_count);
-    if (m_count >= SAMPLE_COUNT) {
-        return 0;
-    }
-    return sample;
-}
+unsigned char RecordedSound :: prep_sample() {}
+
 // Start recorded sound item
 void RecordedSound::start() {
-    m_count = 0;
+    m_player.play(1);  //Play the first mp3
 }
 
 

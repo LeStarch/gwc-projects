@@ -15,6 +15,8 @@
 #include "sensor.hpp"
 #include "motor.hpp"
 
+//Note for Michael: A4, A5 appear to be I2C pins, 13 is used as LED, sensore uses 8 as trigger and 2 as interrupt back.  10, 11 are software serial pins.
+
 // We choose output pin 6 to wire the speaker to. The negative lead should be tied to ground.
 const unsigned int OUTPUT_PIN = 6;
 const unsigned int SENSOR_PIN = 8;
@@ -27,10 +29,10 @@ Motor right(Motor::RIGHT);
 /**
  * !!! GWC START HERE !!!  You will also see "!!! GWC" notes below where you can explore in the code.
  * 
- * 
+ * It is time to put everything together.  We have motors, sensors, speaker output and code.  Our goal is to make a robotic Dog that can sense the world
+ * and respond.  It is up to you and your team to decide what this Dog will do, and how it will respond to the world.  Good luck!!! Ask questions!!!
  */
-ToneSound audio; // Use this to play tonal sounds (notes)
-//RecordedSound audio; // Use this one to play recorded audio
+RecordedSound audio; // Use this one to play recorded audio
 
 void setup() {
     // Hardware check
@@ -44,8 +46,8 @@ void setup() {
     runner.register_clockable(right, MOTOR_FREQUENCY);
 
     // Initialize arduino sound objects.  They use the same pin. Start with no note.
-    audio.init(OUTPUT_PIN, SAMPLE_FREQUENCY);
-    audio.set_note(262);
+    audio.init();
+    audio.start();
 
     //!!! GWC START HERE !!!
     //left.setSpeed(Motor::M_FORWARD, 200.0);
