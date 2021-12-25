@@ -1,3 +1,6 @@
+//////////////////////////////////////////////////
+//////// GWC LESSON: Scroll To The Bottom ////////
+//////////////////////////////////////////////////
 
 /**
  * ArduinoAudio:
@@ -84,10 +87,19 @@ class ArduinoAudio {
 };
 //Define a global variable here that will be our audio player
 //it is accesible from everywhere.
-//Note: we pass it pin "13" as the output pin for our audio.
+//Note: we pass it pin "A1" as the output pin for our audio.
 ArduinoAudio player(A1);
 
-/********** GWC class, edit below this line ********/
+
+
+
+
+
+
+////////////////////////////////////////////////
+//////// GWC LESSON: Lesson Begins Here ////////
+////////////////////////////////////////////////
+
 // The above code is designed to support this project, but it shouldn't need to be touched.
 // To explore, edit the below lines in order to design your own stuff.
 
@@ -100,6 +112,8 @@ void setup() {
     player.play_note(100.0f, 200);
     player.play_note(0, 200);
 }
+
+
 //If you want yor music to play in a loop, put it here.  Otherwise, put it
 //in the setup function.
 void loop() {
