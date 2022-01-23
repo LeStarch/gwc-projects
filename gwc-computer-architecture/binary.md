@@ -1,5 +1,6 @@
 # Binary and Computers
 
+Binary is a way of representing numbers. It is often used in computers. In this lesson we will explore binary and binary math.
 
 
 ## Decimal and Humans
