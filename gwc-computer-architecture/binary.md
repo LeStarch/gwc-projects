@@ -26,6 +26,8 @@ or
 Eight Ten-Thousands and 3 Thousands and 2 Hundreds and no Tens and 4 Ones 
 ```
 
+Let's try an example:  write 834923 in the expanded form we just saw!
+
 When we do math on these numbers we must obey the rule that no digit shall be more than 9. This can be seen in the following example: 93 + 28
 
 ```
@@ -76,6 +78,12 @@ or
 One Four and no Twos and one One
 ```
 
+Can you write the following in expanded form?  101101.
+
+
+Now can you conver to binary?  What is 25 in binary notation?
+
+
 **Note:** since binary can only have one or zero for each digit this can also be read "on" or "off" for each digit. Since the core building block of a computer is
 a switch, "on" and "off" make a lot of sense. This is:
 
@@ -86,7 +94,10 @@ Four 'On' and Two 'Off' and One 'On
 ## Binary Addition
 
 In order to add two binary numbers we follow the same process as we did with decimal numbers but our carry-over limit is now two and we are adding only zeros and
-ones.  Let's try an example:
+ones. First, lets start with the basics: `0 + 0 = 0` and `0 + 1 = 1`. The hardest addition in all of binary is next: `1 + 1 = 10`.  Did you get `2`?  Remember 
+there are no `2`s in binary so we have to carry over to the next digit getting `10` or in expanded notation `(2^1 + 0)`!
+
+Let's try an example of extended addition:
 
 ```
   101
@@ -206,8 +217,30 @@ is one OR the other but not both.
 | 1 | 0 | 1       |
 | 1 | 1 | 0       |
 
+**Note:** these operators are often applied digit-by-digit of a number. Let's take a look:
 
+```
+    101101
+OR   10110
+----------
+    111111
+````
 
+```
+    101101
+AND  10110
+----------
+    000100
+````
+
+Now you try!
+
+```
+    101101
+XOR  10110
+----------
+
+````
 
 
 
