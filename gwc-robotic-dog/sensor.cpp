@@ -32,6 +32,7 @@ unsigned long Sensor::pulse() {
     return m_pulse_time;
 }
 
+
 void Sensor::isr() {
     unsigned long reading = micros();
     int stat = digitalRead(INTERRPUT_PIN);

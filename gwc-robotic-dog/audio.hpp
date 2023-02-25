@@ -90,7 +90,7 @@ class RecordedSound : public ArduinoSound {
         /**
          * Resets and starts the playback. 
          */
-        void start();
+        void start(int number);
     private:
         SoftwareSerial m_serial;
         DFRobotDFPlayerMini m_player;

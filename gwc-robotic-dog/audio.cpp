@@ -59,8 +59,8 @@ void RecordedSound::update() {}
 unsigned char RecordedSound :: prep_sample() {}
 
 // Start recorded sound item
-void RecordedSound::start() {
-    m_player.play(1);  //Play the first mp3
+void RecordedSound::start(int number) {
+    m_player.play(number);  //Play the first mp3
 }
 
 

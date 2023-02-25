@@ -47,7 +47,35 @@ void setup() {
 
     // Initialize arduino sound objects.  They use the same pin. Start with no note.
     audio.init();
-    audio.start();
+      while (true){
+        audio.start(1);//bork
+        runner.delay(10);
+        left.setSpeed(Motor::M_REVERSE, 200.0);
+        right.setSpeed(Motor::M_REVERSE, 200.0);
+        sensor.emit();
+        runner.delay(10);
+        left.start();
+        right.start();
+        while (sensor.pulse()>30) {
+          sensor.emit();
+          runner.delay(10);
+        }
+        left.stop();
+        right.stop();
+        audio.start(2);
+        runner.delay(5000);
+        left.setSpeed(Motor::M_FORWARD, 200.0);
+        right.setSpeed(Motor::M_REVERSE, 200.0);
+        left.start();
+        right.start();
+        runner.delay(500);
+        left.stop();
+        right.stop();
+        
+      }
+    
+    //runner.delay(1000);
+    //audio.start(2);
 
     //!!! GWC START HERE !!!
     //left.setSpeed(Motor::M_FORWARD, 200.0);
