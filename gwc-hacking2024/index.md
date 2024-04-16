@@ -4,6 +4,6 @@ We at Insecurity Inc. value you, our valued customer. We want to ensure that you
 
 - [About Us](./about-us.md)
 - [Our Staff](./our-staff.md)
-- [Employment Opportunities](./employment-opportunities)
+- [Employment Opportunities](./employment-opportunities.md)
 
 Thanks for visiting.
